@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Planet extends Model
 {
-    protected $table = 'Planets';
+    protected $table = 'planets';
 
     protected $fillable = [
         'name',
