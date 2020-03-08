@@ -22,6 +22,7 @@ class PeopleController extends Controller
     public function peopleInfoById($id){
         $people = People::find($id);
         if($people){
+            $people["visit_count"] = $people->countVisits($people["id"]);
             return response()->json($people,200);
         }else{
             return response()->json('People not found by this id!',404);
@@ -31,6 +32,7 @@ class PeopleController extends Controller
     public function peopleInfoByName($name){
         $people = People::where('name','LIKE',"%$name%")->first();        
         if($people){
+            $people["visit_count"] = $people->countVisits($people["id"]);
             return response()->json($people,200);
         }else{
             return response()->json('People not found by this name!',404);

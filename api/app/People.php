@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class People extends Model
 {
@@ -21,4 +22,9 @@ class People extends Model
         
     ];
     
+    public function countVisits($id){
+        return DB::table('visits')
+        ->where('people_id',$id)
+        ->count();
+    }
 }

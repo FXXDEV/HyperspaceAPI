@@ -24,7 +24,7 @@ class Planet extends Model
 
     public function countVisits($id){
         return DB::table('visits')
-        ->where('people_id',$id)
+        ->where('planet_id',$id)
         ->count();
     }
     

@@ -19,8 +19,10 @@ class PlanetController extends Controller
     }
 
     public function planetInfoByName($name){
-        $planet = Planet::where('name','LIKE',"%$name%")->first();    
+        $planet = Planet::where('name','LIKE',"%$name%")->first();  
+        
         if($planet){
+            $planet["visit_count"] = $planet->countVisits($planet["id"]);
             return response()->json($planet,200);
         }else{
             return response()->json('Planet not found by this name!',404);
@@ -30,6 +32,7 @@ class PlanetController extends Controller
     public function planetInfoById($id){
         $planet = Planet::find($id);
         if($planet){
+            $planet["visit_count"] = $planet->countVisits($planet["id"]);
             return response()->json($planet,200);
         }else{
             return response()->json('Planet not found by this id!',404);
