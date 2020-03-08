@@ -10,39 +10,31 @@ class PlanetController extends Controller
 {
     
     public function list(){
-        $planets = Http::get('https://swapi.co/api/planets/');
-        $planets = $planets["results"];
-        return $planets;
-        
-    }
-
-    public function planetDetails($name){
-        $planets = $this->list(); 
-        $result = 'Planet not Found';
-    
-        foreach ($planets as $planet){
-            if (strpos($planet["name"], $name)!== false) {
-                $result = $planet;
-            }
-        } 
-        //add counter over planetschema 
-        return $result;
-
-    }
-
-    public function storeVisitors(Request $request){
-        
-        if($request->planet_id && $request->user_id){
-            Planet::create($request->all());
-            return 'Visitor successful contabilized';
+        $planets = Planet::all();
+        if($planets){           
+            return response()->json($planets,200);
         }else{
-            return 'Error!';
+            return response()->json('Error',404);
         }
-        
-    
     }
 
+    public function planetInfoByName($name){
+        $planet = Planet::where('name','LIKE',"%$name%")->first();    
+        if($planet){
+            return response()->json($planet,200);
+        }else{
+            return response()->json('Planet not found by this name!',404);
+        }
+    }
 
+    public function planetInfoById($id){
+        $planet = Planet::find($id);
+        if($planet){
+            return response()->json($planet,200);
+        }else{
+            return response()->json('Planet not found by this id!',404);
+        }
+    }
 
 
 }

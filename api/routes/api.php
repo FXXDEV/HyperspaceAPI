@@ -3,20 +3,19 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
 
+/* Planet routes */
 Route::get('planets/all','PlanetController@list')->name('planets.index');
-Route::get('planets/{name}','PlanetController@planetDetails')->name('planets.details');
+Route::get('planets/name/{name}','PlanetController@planetInfoByName')->name('planets.byName');
+Route::get('planets/id/{id}','PlanetController@planetInfoByid')->name('planets.byId');
 
-// Routlae::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+
+/*Visits routes */
+Route::post('visits','VisitController@storeVisitors')->name('visits.index');
+Route::get('visits/ranking','VisitController@rankingVisitors')->name('visits.ranking');
+Route::get('visits/list','VisitController@listVisits')->name('visits.list');
+
+/*People routes */
+Route::get('people/all','PeopleController@list')->name('people.index');
+Route::get('people/name/{name}','PeopleController@peopleInfoByName')->name('people.byName');
+Route::get('people/id/{id}','PeopleController@peopleInfoById')->name('people.byId');

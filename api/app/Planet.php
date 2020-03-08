@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class Planet extends Model
 {
@@ -21,6 +22,10 @@ class Planet extends Model
         'url',
     ];
 
-   
+    public function countVisits($id){
+        return DB::table('visits')
+        ->where('people_id',$id)
+        ->count();
+    }
     
 }
