@@ -11,7 +11,7 @@ Route::get('planets/id/{id}','PlanetController@planetInfoByid')->name('planets.b
 
 
 /*Visits routes */
-Route::post('visits','VisitController@storeVisitors')->name('visits.index');
+Route::post('visits','VisitController@storeVisitors')->name('visits.store');
 Route::get('visits/ranking','VisitController@rankingVisitors')->name('visits.ranking');
 Route::get('visits/list','VisitController@listVisits')->name('visits.list');
 
