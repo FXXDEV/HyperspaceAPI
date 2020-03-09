@@ -31,6 +31,8 @@ class peopleTest extends TestCase
     }
     public function testPeopleDetailsById()
     {
+       
+
         $response = $this->json('GET','/api/people/id/1');
         $response
             ->assertStatus(200)

@@ -16,6 +16,6 @@ Route::get('visits/ranking','VisitController@rankingVisitors')->name('visits.ran
 Route::get('visits/list','VisitController@listVisits')->name('visits.list');
 
 /*People routes */
-Route::get('people/all','PeopleController@list')->name('people.index');
+Route::get('people/all','PeopleController@listPeople')->name('people.index');
 Route::get('people/name/{name}','PeopleController@peopleInfoByName')->name('people.byName');
 Route::get('people/id/{id}','PeopleController@peopleInfoById')->name('people.byId');

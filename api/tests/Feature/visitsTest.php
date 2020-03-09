@@ -35,7 +35,9 @@ class visitsTest extends TestCase
 
      public function testStoreVists()
      {
-        
+        $response = $this->json('POST','api/visits?people_id=4&planet_name=alde');
+        $response
+            ->assertStatus(200);
      }
 
 
